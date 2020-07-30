@@ -16,7 +16,6 @@ import math
 #              base=2 is the default
 # \return the digits in the place system as a string
 def natural2placesystem(num, base=2) : 
-
     result = ""    
     # Wir bestimmen k, die Anzahl der Ziffern
     k = math.floor(math.log(num, base)) + 1
@@ -24,12 +23,9 @@ def natural2placesystem(num, base=2) :
     while (k>0) :         
         digit = num // divisor  
         num = num % divisor 
-        # Ziffer in String speichern 
         result += str(digit);  
-  
         k -= 1        
-        divisor //= base
-        
+        divisor //= base       
     return result
 
 ## Convert a rational number to a place system
