@@ -17,7 +17,6 @@ import math
 # \return the digits in the place system as a string
 def natural2placesystem(num, base=2) : 
     result = ""    
-    # Wir bestimmen k, die Anzahl der Ziffern
     k = math.floor(math.log(num, base)) + 1
     divisor = base**(k-1)
     while (k>0) :         
@@ -37,28 +36,19 @@ def natural2placesystem(num, base=2) :
 # @param precision: number of digits used after the point
 #                   default value is 10
 # \return the digits in the place system as a string
-def rational2placesystem(m, n, base, precision = 10) : 
-  
-    result = ""  
-  
-    # Den ganzzahligen Anteil n bestimmen 
+def rational2placesystem(m, n, base, precision = 10) :  
+    result = ""   
     g = m // n  
     if g > 0 : 
         result = natural2placesystem(g, base) + "." 
     else:
         result = "0."
-           
-    # Den Anteil der Zahl nach dem Dezimalpunkt bestimmen  
     r0 = m - g*n
   
-    # Hier noch meinen Algorithmus einbauen,
-    # mit allgemeiner Basis und eventuell auch
-    # ein Stop vor k_prec, wenn 
     while (precision>0 and r0>0) :            
         r0 *= base
         d = r0 // n
         result += str(d)
         r0 -= d*n 
         precision -= 1
-
     return result  
