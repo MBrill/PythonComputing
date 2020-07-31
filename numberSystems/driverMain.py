@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 ## \example
 # Driver for place system functions
 #

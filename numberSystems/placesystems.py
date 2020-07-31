@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ## We convert natural and rational numbers to place systems defined by the base.
 
 ## \mainpage
