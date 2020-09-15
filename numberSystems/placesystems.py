@@ -29,7 +29,7 @@ def natural2placesystem(num, base=2) :
         divisor //= base       
     return result
 
-## Convert a rational number to a place system
+## Convert a rational number to a place system ror a given base
 #
 # \param m: nominator of rational number q=m/n
 # \param n: ndeominator of rational number q=m/n
