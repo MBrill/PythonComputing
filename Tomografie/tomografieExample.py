@@ -20,7 +20,6 @@ a = np.array([[1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 # setup the right hand side
 b = np.array([18.0, 14.0, 18.0, 17.0, 15.0, 12.0, 12.0, 13.0, 14.0])
 
-
 # use numpy to solve the linear equation system
 x = np.linalg.solve(a, b)
 
