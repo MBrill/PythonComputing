@@ -53,7 +53,7 @@ def iterate(c, n, divBarrier=2.0):
     print('z = ', z)
     print('abs(z) = ', absz)
     for i in range(n):
-        print('Iteration', i)
+        print('Iteration', i+1)
         z = quadraticPoly(z, c)
         absz = np.abs(z)
         print('z = ', z)
@@ -61,7 +61,8 @@ def iterate(c, n, divBarrier=2.0):
         if (absz > divBarrier):
             break
 
-n=4
+
+n = 4
 c = np.complex(1.0, 0.0)
 iterate(c, 4, 1000.0)
 
