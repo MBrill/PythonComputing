@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 """
 Verschiedene Alternativen für die Vieta'sche Formel
+
+Lösung der Aufgabe float4.
 """
 import numpy as np
 
-# Funktionen
-def numberOne(p, q) :
+
+def numberOne(p, q):
     return -p + np.sqrt(p*p-q)
 
-def numberTwo(p, q) :
+
+def numberTwo(p, q):
     denum = p + np.sqrt(p*p-q)
     return (-q)/denum
+
 
 # Die Werte für Teilaufgabe a
 p = 3.0
