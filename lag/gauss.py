@@ -63,22 +63,23 @@ def gauss(a, eps=1.0e-10):
                 a[j][k] = a[j][k] - ratio * a[i][k]
     return a
 
+
 def cool():
-    A = np.array([[3, 2, 1, 10],[2, 3, 2, 14],[1, 2, 3, 14]])
-    A[1,:] = A[1,:] - A[0,:]*A[1,0]/A[0,0]
-    A[2,:] = A[2,:] - A[0,:]*A[2,0]/A[0,0]
-    print( A)
-    print('After transformation\n')
-    A[2,:] = A[2,:] - A[1,:]*A[2,1]/A[1,1]
+    A = np.array([[3, 2, 1, 10], [2, 3, 2, 14], [1, 2, 3, 14]])
+    A[1, :] = A[1, :] - A[0, :]*A[1, 0]/A[0, 0]
+    A[2, :] = A[2, :] - A[0, :]*A[2, 0]/A[0, ]
     print(A)
-    
-    z = A[2,3]/A[2,2]
-    y = (A[1,3] - A[1,2]*z)/A[1,1]
-    x = (A[0,3] - A[0,1]*y - A[0,2]*z)/A[0,0]
+    print('After transformation\n')
+    A[2, :] = A[2, :] - A[1, :]*A[2, 1]/A[1, ]
+    print(A)
+
+    z = A[2, 3]/A[2, 2]
+    y = (A[1, 3] - A[1, 2]*z)/A[1, 1]
+    x = (A[0, 3] - A[0, 1]*y - A[0, 2]*z)/A[0, 0]
     print('x =', x)
     print('y =', y)
-    print('z =', z) 
-  
+    print('z =', z)
+
 
 def main():
     """
