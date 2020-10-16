@@ -20,7 +20,6 @@ def T1(s):
     -------
     Computed value.
     """
-
     return 5000.0/(3363.0+2378.0*s)
 
 
@@ -37,7 +36,6 @@ def T2(s):
     -------
     Computed value.
     """
-
     return 5000.0*(3363.0-2378.0*s)
 
 
