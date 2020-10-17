@@ -11,7 +11,7 @@ def numberOne(p, q):
     """
     Berechnung der Lösung der quadratischen Gleichung x*+2+2px+q=0 mit
     kleinerem Absolutbetrag.
-    
+
     Wir verwenden die Standard Formulierung x = -p + sqrt(p**2-q)
 
     Parameter
@@ -34,7 +34,7 @@ def numberTwo(p, q):
     """
     Berechnung der Lösung der quadratischen Gleichung x*+2+2px+q=0 mit
     kleinerem Absolutbetrag.
-    
+
     Wir verwenden die alternative Formulierung x = -q/(p+ sqrt(p**2-q))
 
     Parameter
@@ -49,7 +49,7 @@ def numberTwo(p, q):
     float
         Lösung der quadratischen Gleichung mit kleinerem Absolutbetrag.
 
-    """    
+    """
     return (-q)/(p + np.sqrt(p*p-q))
 
 
@@ -70,12 +70,12 @@ def evaluate(p, q, x):
     -------
     Ergebnis der Auswertung als float-Wert.
     """
-    return x*x + 2.0*p*x + q
+    return np.polyval([1.0, 2.0*p, q], x)
 
 
 def main():
     """
-    Implementing Vieta's formula
+    Die Vieta'sche Formel in verschiedenen Variationen
 
     Returns
     -------

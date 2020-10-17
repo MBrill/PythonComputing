@@ -24,10 +24,14 @@ sol1 = fl.numberOne(p, q)
 sol2 = fl.numberTwo(p, q)
 
 for i in range(n):
-    print('k =', i+1, 'Formel 1: ', sol1[i], 'Formel 2: ', sol2[i])
+    print('k =', i+1, '1:', sol1[i], '2:', sol2[i])
 
 # Als Test setzen wir die Werte, die wir mit der alternativen
 # Formel berechnet haben in das Polynom ein, mit fl.evaluate
 print('Test mit den Ergebnissen aus Formel 2')
-print('Wir setzen die Ergebnisse in das quadratische Polynom ein')
+print('Wir setzen die Ergebnisse in das quadratische Polynom ein:')
 print(fl.evaluate(p, q, sol2))
+
+print('Test mit den Ergebnissen aus Formel 1')
+print('Wir setzen die Ergebnisse in das quadratische Polynom ein:')
+print(fl.evaluate(p, q, sol1))
