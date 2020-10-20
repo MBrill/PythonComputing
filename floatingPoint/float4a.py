@@ -9,7 +9,7 @@ import numpy as np
 
 def numberOne(p, q):
     """
-    Berechnung der Lösung der quadratischen Gleichung x*+2+2px+q=0 mit
+    Berechnung der Lösung der quadratischen Gleichung x**2+2px+q=0 mit
     kleinerem Absolutbetrag.
 
     Wir verwenden die Standard Formulierung x = -p + sqrt(p**2-q)
@@ -32,7 +32,7 @@ def numberOne(p, q):
 
 def numberTwo(p, q):
     """
-    Berechnung der Lösung der quadratischen Gleichung x*+2+2px+q=0 mit
+    Berechnung der Lösung der quadratischen Gleichung x**2+2px+q=0 mit
     kleinerem Absolutbetrag.
 
     Wir verwenden die alternative Formulierung x = -q/(p+ sqrt(p**2-q))
