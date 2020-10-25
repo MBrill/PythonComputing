@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-A small demo for keyword arguments.
+Computations using floating point numbers.
 
 Source: Schuppar, Elementare Numerik für die Sekundarstufe, Springer, 2015.
 """
