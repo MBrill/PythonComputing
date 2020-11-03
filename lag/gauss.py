@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Back substitution and simple implementation of the Gauss algorithm.
+Backsubstitution and simple implementation of the Gauss algorithm.
 """
 
 import numpy as np
@@ -25,7 +25,7 @@ def backSubstitution(a):
     -------
     Solution of the linear equation system.
     """
-    n = np.size(a, 0)
+    n = a.shape[0]
     x = np.zeros(n)
     x[n-1] = a[n-1][n]/a[n-1][n-1]
     for i in np.arange(n-2, -1, -1):
@@ -53,24 +53,24 @@ def gauss(a, eps=1.0e-10):
     -------
     Result of the Gauss elimination in place.
     """
-    n = np.size(a, 0)
-    for i in np.arange(n):
-        if np.abs(a[i][i]) <= eps:
+    n = a.shape[0]
+    for k in np.arange(n):
+        if np.abs(a[k][k]) <= eps:
             sys.exit('Division by zero detected in function gauss')
-        for j in np.arange(i+1, n):
-            ratio = a[j][i]/a[i][i]
-            for k in np.arange(n+1):
-                a[j][k] = a[j][k] - ratio * a[i][k]
+        for i in np.arange(k+1, n):
+            factor = a[i][k]/a[k][k]
+            for j in np.arange(n+1):
+                a[i][j] = a[i][j] - factor * a[k][j]
     return a
 
 
 def cool():
     A = np.array([[3, 2, 1, 10], [2, 3, 2, 14], [1, 2, 3, 14]])
-    A[1, :] = A[1, :] - A[0, :]*A[1, 0]/A[0, 0]
-    A[2, :] = A[2, :] - A[0, :]*A[2, 0]/A[0, ]
     print(A)
+    A[1, :] = A[1, :] - (A[1, 0]/A[0, 0]) * A[0, :]
+    A[2, :] = A[2, :] - (A[2, 0]/A[0, 0]) * A[0, :]
     print('After transformation\n')
-    A[2, :] = A[2, :] - A[1, :]*A[2, 1]/A[1, ]
+    A[2, :] = A[2, :] - (A[2, 1]/A[1, 1])*A[1, :]
     print(A)
 
     z = A[2, 3]/A[2, 2]
@@ -95,7 +95,8 @@ def main():
     a = np.array([[1, 2, 0, 1],
                   [0, 2, 2, 1],
                   [0, 0, 3, 1]])
-    print('Do the back substitution')
+    print('The coefficient matrix')
+    print(a)
     print('The computed solution should be:')
     print(np.array([2/3, 1/6, 1/3]))
     x = backSubstitution(a)
@@ -127,6 +128,9 @@ def main():
     x = backSubstitution(a)
     print('Computed solution')
     print(x)
+    
+    print('Coole Version')
+    cool()
 
 
 if __name__ == "__main__":
