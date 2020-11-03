@@ -95,7 +95,7 @@ def main():
     a = np.array([[1, 2, 0, 1],
                   [0, 2, 2, 1],
                   [0, 0, 3, 1]])
-    print('Do the back substituion')
+    print('Do the back substitution')
     print('The computed solution should be:')
     print(np.array([2/3, 1/6, 1/3]))
     x = backSubstitution(a)

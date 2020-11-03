@@ -6,7 +6,7 @@ Linear equation systems and the Hilbert matrix.
 import numpy as np
 from scipy.linalg import hilbert, invhilbert
 
-# Output the Hilbert matrix for n=3
+# Output the Hilbert matrix
 n = 9
 hilbert = hilbert(n)
 print('Hilbert Matrix for n=', n)
