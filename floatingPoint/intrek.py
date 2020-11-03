@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Integralrekursionen.
+Integralberechnungen.
 """
 import numpy as np
 
@@ -8,7 +8,7 @@ import numpy as np
 # Funktionen
 def forward(n):
     """
-    Iteratative Berechnung des Integrals I_n aus I_0.
+    Iterative Berechnung des Integrals I_n aus I_0.
 
     Parameters
     ----------
@@ -89,7 +89,7 @@ def main():
 
     start = 10
     istart = np.float64(1.0)
-    print('Verwendeter Startwert war ', istart)
+    print('\nVerwendeter Startwert war', istart)
     results = backward(start, n, istart)
     print('Ergebnis der Berechnung ausgehend von I_', start, ' ist',
           results[start - n - 1])
