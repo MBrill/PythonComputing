@@ -2,12 +2,11 @@
 """
 Backsubstitution and simple implementation of the Gauss algorithm.
 """
-
 import numpy as np
 import sys
 
 
-def backSubstitution(a):
+def backSubstitution(a: np.float64):
     """
     Back substitution for a simple Gauss algorithm. Call this
     function after eliminating the extended coefficient matrix.
@@ -26,17 +25,17 @@ def backSubstitution(a):
     Solution of the linear equation system.
     """
     n = a.shape[0]
-    x = np.zeros(n)
+    x = np.zeros(n, dtype=np.float64)
     x[n-1] = a[n-1][n]/a[n-1][n-1]
     for i in np.arange(n-2, -1, -1):
-        x[i] = a[i][n]
+        res = a[i][n]
         for j in np.arange(i+1, n):
-            x[i] = x[i] - a[i][j]*x[j]
-        x[i] = x[i] / a[i][i]
+            res = res - a[i][j]*x[j]
+        x[i] = res / a[i][i]
     return x
 
 
-def gauss(a, eps=1.0e-10):
+def gauss(a: np.float64, eps=np.float64(1.0e-10)):
     """
     Gauss elimination of an extended coefficient matrix of a
     quadratic linear equation system. The algorithm is done in place,
@@ -103,7 +102,6 @@ def main():
     print('The computed solution')
     print(x)
     print('Testing the gauss elimination')
-    # We use the first example for Gauss in the LAG class
     a = np.array([[1, -1, 0, 0, 5],
                   [-1, 2, -1, 0, 0],
                   [0, -1, 2, -1, 1],
@@ -114,7 +112,7 @@ def main():
                         [0, 0, 1, -1, 6],
                         [0, 0, 0, 1, 6]])
 
-    print('The correct solution would be')
+    print('The correct eliminated matrix is')
     print(correct)
 
     gauss(a)
