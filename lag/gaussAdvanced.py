@@ -35,32 +35,34 @@ def backSubstitution(a: np.float64):
     return x
 
 
-def gauss(a: np.float64, eps=np.float64(1.0e-10)):
+def cool3(a):
+    # n=3
+    # Schritt 1
+    a[1, 1:] = a[1, 1:] - (a[1, 0]/a[0, 0]) * a[0, 1:]
+    a[2, 1:] = a[2, 1:] - (a[2, 0]/a[0, 0]) * a[0, 1:]
+    # Schritt 2
+    a[2, 2:] = a[2, 2:] - (a[2, 1]/a[1, 1]) * a[1, 2:]
+
+
+def gauss(a):
     """
-    Gauss elimination of an extended coefficient matrix of a
-    quadratic linear equation system. The algorithm is done in place,
-    so if you need the original matrix A or the right hand side b,
-    store them before calling this function.
+    Gauss-Elimation using slicing
 
     Parameters
     ----------
-    a : ndarray of size (n, n+1)
-        Extended coefficient matrix of the lineare equation system.
-    eps: precision for the decision, if a diagonal element is zero.
+    a : float ndarray
+        coefficent matrix with right hand side in last column.
 
     Returns
     -------
-    Result of the Gauss elimination in place.
+    Eliminated matrix in the upper triangle of a.
+
     """
+    # Schritt 1
     n = a.shape[0]
-    for k in np.arange(n):
-        if np.abs(a[k][k]) <= eps:
-            sys.exit('Division by zero detected in function gauss')
-        for i in np.arange(k+1, n):
-            factor = a[i][k]/a[k][k]
-            for j in np.arange(n+1):
-                a[i][j] = a[i][j] - factor * a[k][j]
-    return a
+    for k in np.arange(1, n):
+        for i in np.arange(k, n):
+            a[i, k:] = a[i, k:] - (a[i, k-1]/a[k-1, k-1]) * a[k-1, k:]
 
 
 def main():
@@ -74,42 +76,39 @@ def main():
     # Example matrix from LAG class
     # solution:
     # x = [2/3, 1/6, 1/3]
-    a = np.array([[1, 2, 0, 1],
-                  [0, 2, 2, 1],
-                  [0, 0, 3, 1]])
-    print('The coefficient matrix')
-    print(a)
-    print('The computed solution should be:')
-    print(np.array([2/3, 1/6, 1/3]))
+    a = np.array([[1, 3, 4, 1], [2, 1, 3, 2], [4, 7, 2, 3]])
+    print('n=3')
+    print('Matrix A\n', a)
+    gauss(a)
+    print('After elimination\n', a)
     x = backSubstitution(a)
-    print('The computed solution')
+    print('The computed solution (exact would be (8/9, -1/9, 1/9)')
     print(x)
-    print('Testing the gauss elimination')
+
+    print('n=4')
     a = np.array([[1, -1, 0, 0, 5],
                   [-1, 2, -1, 0, 0],
                   [0, -1, 2, -1, 1],
                   [0, 0, -1, 2, 0]])
+    print('Coefficient matrix\n', a)
 
     correct = np.array([[1, -1, 0, 0, 5],
                         [0, 1, -1, 0, 5],
                         [0, 0, 1, -1, 6],
                         [0, 0, 0, 1, 6]])
-
     print('The correct eliminated matrix is')
     print(correct)
 
     gauss(a)
     print('Computed eliminated matrix')
     print(a)
-
-    print('Back substitution for this example')
     x = np.array([22, 17, 12, 6])
     print('Correct solution')
     print(x)
     x = backSubstitution(a)
     print('Computed solution')
     print(x)
-    
+
 
 if __name__ == "__main__":
     main()

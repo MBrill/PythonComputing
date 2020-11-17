@@ -21,7 +21,7 @@ def pt_in_circle(p, midpoint, diam):
 
     Returns
     -------
-    TRUE is point is contained in the circle
+    TRUE point is contained in the circle
     """
     radius2 = 0.25*(diameter**2)
     distances = (x - midpoint[0])**2 + (y - midpoint[1])**2

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Linear equation systems and the Hilbert matrix.
+The Hilbert matrix.
 """
 
 import numpy as np
-from scipy.linalg import hilbert, invhilbert
+from scipy import linalg
 
-# Output the Hilbert matrix for n=3
+# Output the Hilbert matrix
 n = 9
-hilbert = hilbert(n)
+hilbert = linalg.hilbert(n)
 print('Hilbert Matrix for n=', n)
 print(hilbert)
 
@@ -18,12 +18,12 @@ print(hilbert)
 # inverse Hilbert matrix are bigger than the integers
 # we can work with.
 # use invhilbert(n, exact = False) from n>=15 on.
-# from scipy docs
+# from scipy docs:
 # invhilbert(16)[7,7]
 # 4.2475099528537506e+19
 # invhilbert(16, exact=True)[7,7]
 # 42475099528537378560
-hilbert_inv = invhilbert(n)
+hilbert_inv = linalg.invhilbert(n)
 print('Inverse of Hilbert Matrix for n=', n)
 print(hilbert_inv)
 
