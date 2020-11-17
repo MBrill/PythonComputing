@@ -12,9 +12,8 @@ x = linalg.solve(a, b)
 print('Computed solution:\n', x)
 
 # Check, if the solution is correct
-np.array([2.0, -2.0,  9.0])
 check = np.dot(a, x) == b
-if (check.all()):
+if check.all():
     print('Everything worked!')
 else:
     print('Something is wrong ')

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Linear equation systems and the Hilbert matrix.
+The Hilbert matrix.
 """
 
 import numpy as np

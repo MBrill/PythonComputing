@@ -17,7 +17,7 @@ import numpy as np
 
 def vectors_to_matrix(a, b, c):
     """
-    convert the vectors a, b und c to a 4x4-matrix.
+    convert the vectors a, b und c to a nxn-matrix.
 
     Parameters
     ----------
@@ -42,21 +42,21 @@ def vectors_to_matrix(a, b, c):
 
 def matrix_to_vectors(A):
     """
-    convert the vectors a, b und c to a 4x4-matrix.
+    convert a nxn-matrix to vectors a, b und c.
 
     Parameters
     ----------
     A : ndarray
-        Tridiagonal 4x4 matrix.
+        Tridiagonal nxn matrix.
 
     Returns
     -------
     a : ndarray
-        Diagonal elements, size of a is 4.
+        Diagonal elements, size of a is n.
     b : ndarray
-        Elements in the upper diagonal, size of b is 3.
+        Elements in the upper diagonal, size of b is n-1.
     c : ndarray
-        Elements in the upper diagonal, size of c is 3.
+        Elements in the upper diagonal, size of c is n-1.
     """
     n = A.shape[0]
     a = np.zeros(shape=(n,), dtype=np.float64)
