@@ -12,13 +12,13 @@ data = np.genfromtxt('wassergehalt.csv',
 
 a = np.ones(shape=(data.shape[0], 2))
 a[:, 0] = data[:, 0]
-b = np.zeros(shape=(data.shape[0],))
-b = data[:, 1]
+y = np.zeros(shape=(data.shape[0],))
+y = data[:, 1]
 
 q, r = linalg.qr(a)
-bprime = np.transpose(q) @ b
+yprime = np.transpose(q) @ y
 
-x = linalg.solve_triangular(r[:2, :], bprime[:2])
+x = linalg.solve_triangular(r[:2, :], yprime[:2])
 print('Results least squares computation using QR')
 print('The slope of the line is ', x[0])
 print('The intercept of the line is ', x[1])
