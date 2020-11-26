@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Fit a ellipse or circle to a set of points.
+Fit a circle to a set of points.
 
 Use non-linear least squares function in Scipy.
 """
 import numpy as np
 from scipy import optimize
+import matplotlib.pyplot as plt
 
 
-def s(theta, t):
+def circle(theta, t):
     """
     Taken from Elias Hernandis,
     "Three Examples of nonlinear least-squares fitting
@@ -17,46 +18,59 @@ def s(theta, t):
     Parameters
     ----------
     theta : ndarray of float
-        Parameters of ellipse
-    t: parameter value for ellipse
+        Parameters of circle
+    t: float
+       Parameter value for circle
 
     Returns
     -------
-    Point on ellipse.
+    Point on circle.
     """
-    x = theta[0] + theta[2]*np.cos(t)
-    y = theta[1] + theta[2]*np.sin(t)
+    x = theta[0] + theta[2]*np.cos(2.0*np.pi*t)
+    y = theta[1] + theta[2]*np.sin(2.0*np.pi*t)
     return np.array([x, y])
 
 
-# compute points on ellipse and add some noise
-ts = np.linspace(0, 2.0*np.pi)
-cx = 1.5
-cy = 1.3
-r = 0.75
-noise = 0.05
-ss = s([cx, cy, r], ts)
-ss[0] += noise*np.random.rand(ts.shape[0])
-ss[1] += noise*np.random.rand(ts.shape[0])
+def resFun(theta, x, y):
+    Ri = np.sqrt((x-theta[0])**2 + (y - theta[1])**2)
+    return Ri - theta[2]
+
+
+data = np.genfromtxt('kreis.csv',
+                     delimiter=';', skip_header=True)
 
 
 def fun(theta):
-    return (s(theta, ts) - ss).flatten()
+    return resFun(theta, data[:, 0], data[:, 1]).flatten()
 
 
-theta_0 = np.zeros(shape=(3,), dtype=np.float64)
-res = optimize.least_squares(fun, theta_0)
+x_0 = np.zeros(shape=(3,), dtype=np.float64)
+res = optimize.least_squares(fun, x_0)
 
 # res is of Type OptimizeResult
 if res.success:
-    print('Fitting points to an ellipse')
-    print('The exact solution is (1.5, 1.3, 0.75)')
+    print('Fitting points to a circle')
     print('Minimizer ended successful')
-    print('The computed x-value for the local minium')
+    print('The computed values (centerx, centery, radius)')
     print(res.x)
-    print('The function value at this point')
-    print(res.cost)
     print('Number of function calls to the objective function: ',
           res.nfev)
     print('Optimality condition (norm of gradient): ', res.optimality)
     print('Mean Least Squares error is', (res.fun**2).mean())
+
+
+t = np.linspace(0.0, 1.0, num=256)
+xc, yc = circle(res.x, t)
+
+fig = plt.figure(figsize=(16.0, 16.0))
+plt.title('Circle Estimation')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.plot(data[:, 0], data[:, 1], 'ob', markersize=10, label='data points')
+plt.plot(res.x[0], res.x[1], 'or', markersize=20)
+plt.plot(xc, yc, '-g', label='circle')
+plt.legend()
+
+plt.show()
+
+fig.savefig('images/circleEstimator.png', dpi=300)

@@ -24,7 +24,7 @@ print('p-value is ', r.pvalue)
 print('least squares error is ', r.stderr)
 
 fig = plt.figure(figsize=(16.0, 9.0))
-plt.title('Lineare Regression für den Datensatz wassergehalt.csv')
+plt.title('Linear Regression')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.plot(data[:, 0], data[:, 1], 'oc', label='data points')
