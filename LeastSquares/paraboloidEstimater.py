@@ -42,6 +42,7 @@ noise = 0.1
 hs = h([x0, y0, a, b], gridx, gridy)
 hs += noise*np.random.default_rng().random(hs.shape)
 
+
 def fun(theta):
     return (h(theta, gridx, gridy) - hs).flatten()
 

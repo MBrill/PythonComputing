@@ -28,7 +28,6 @@ print('The coefficients of the quadratic polynomial \n', x[0], x[1], x[2])
 xvals = np.linspace(0.0, 2.0, num=50)
 yvals = np.polyval(x, xvals)
 
-
 fig = plt.figure(figsize=(16.0, 9.0))
 plt.title('Quadratic Regression')
 plt.xlabel('x')

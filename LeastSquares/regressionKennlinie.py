@@ -64,10 +64,11 @@ yvals = x[0]*f1(xvals) + x[1]*f2(xvals)
 
 
 fig = plt.figure(figsize=(16.0, 9.0))
-plt.title('Linear Regression')
+plt.title('Model')
 plt.xlabel('x')
 plt.ylabel('y')
-plt.plot(data[:, 0], data[:, 1], 'ob', markersize=10, label='data points')
+plt.plot(data[:, 0], data[:, 1], 'ob', markersize=10, 
+         label='data points')
 plt.plot(xvals, yvals, '-g', label='fitting function')
 plt.legend()
 

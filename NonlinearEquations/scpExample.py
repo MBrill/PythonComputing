@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Examples for scalar root finding in SciPy
+Beispiele für die numerische Nullstellensuche mit SciPy
 """
 from scipy import optimize
 

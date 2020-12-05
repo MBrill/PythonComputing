@@ -73,4 +73,4 @@ plt.legend()
 
 plt.show()
 
-fig.savefig('images/circleEstimator.png', dpi=300)
+fig.savefig('images/circleEstimator.png', dpi=150)

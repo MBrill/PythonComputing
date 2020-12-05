@@ -19,6 +19,6 @@ q, r = linalg.qr(a)
 yprime = np.transpose(q) @ y
 
 x = linalg.solve_triangular(r[:2, :], yprime[:2])
-print('Results least squares computation using QR')
+print('Results of least squares computation using QR')
 print('The slope of the line is ', x[0])
 print('The intercept of the line is ', x[1])

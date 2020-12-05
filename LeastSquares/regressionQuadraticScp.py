@@ -8,10 +8,9 @@ import matplotlib.pyplot as plt
 data = np.genfromtxt('quadratic.csv',
                      delimiter=';', skip_header=False)
 
-# 3 columns for the quadratic polynomial
 p = np.polyfit(data[:, 0], data[:, 1], deg=2)
 
-print('Results least squares computation using Np.polyfit')
+print('Results least squares computation using np.polyfit')
 print('The coefficients of the quadratic polynomial: \n',
       p[0], p[1], p[2])
 
