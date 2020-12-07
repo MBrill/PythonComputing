@@ -1,55 +1,62 @@
 # -*- coding: utf-8 -*-
 """
-Computing the Mandelbrot set.
+Visualisierung einer Mandelbrot-Menge.
 
-@author: Tom Roelands
+Original stammt von Tom Roelands. Kommentare und PEP8: Manfred Brill
 
 https://tomroelandts.com/articles/how-to-compute-the-mandelbrot-set-using-numpy-array-operations
-
-Comments added by Manfred Brill, adapted to PEP8
 """
-
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import cm
 
-
-# Resolution of tour grid in the complex plane
+# Auflösung in "Pixel" des Rechtsecks in der komplexen Zahlenebene
 m = 480
-n = 320
-
+n = 480
+# Rechteck auf der reellen und der imaginären Achse
 xmin = -2.0
-xmax = 1.0
+xmax = 2.0
+ymin = -2.0
+ymax = 2.0
+
 x = np.linspace(xmin, xmax, num=m).reshape((1, m))
-ymin = -1-0
-ymax = 1.0
 y = np.linspace(ymin, ymax, num=n).reshape((n, 1))
-# use tile to build the matrix of c-values
+# mxn Matrix aus x und y bauen mit tile
+# np.tile multipliziert die Elemente so aus,
+# dass auf der Matrix C der meshgrid steht
 C = np.tile(x, (n, 1)) + 1j * np.tile(y, (1, m))
 
-# Z contains the starting value
-# we use a logical mask M. In the beginning,
-# everything is outside the Mandelbrot set - M = True for all indices.
+# Iteration startet bei 0
 Z = np.zeros((n, m), dtype=np.complex)
-M = np.full((n, m), True, dtype=np.bool)
 
-# maximum number of iterations
+# Die Entscheidung, ob ein Punkt in der Mandelbrot-Menge liegt
+# wird mit einer logischen Matrix durchgeführt, mit
+# der wir auch indizieren können.
+# Tritt während der Iteration Divergenz auf,
+# wird das entsprechende Element in M False gesetzt
+M = np.full((n, m), True, dtype=np.bool)
+# Maximale Anzahl der Iterationen
 n = 100
 divBarrier = 2.0
 for i in range(n):
     Z[M] = Z[M] * Z[M] + C[M]
     M[np.abs(Z) > divBarrier] = False
 
-# flip M (change black and white)
-M = np.logical_not(M)
+# Für invert == True verwenden wir schwarzen Hintergrund,
+# für False ist der Hintergrund weiss und die Menge schwarz.
+invert = False
+if invert:
+    color_map = plt.cm.get_cmap('gray')
+else:
+    color_map = plt.cm.get_cmap('gray').reversed()
 
-plt.figure(dpi=600)
-plt.imshow(M, cmap=cm.gray, origin='lower')
+plt.figure(figsize=(8.0, 4.0))
+plt.imshow(M, cmap=color_map, origin='lower')
 plt.xlabel('')
 plt.ylabel('')
-plt.xticks(np.arange(0.0, 481.0, 480.0), (xmin, xmax))
-plt.yticks(np.arange(0.0, 321.0, 320.0), (ymin, ymax))
+plt.xticks(np.arange(0.0, 481.0, 240.0), (xmin, 0.0, xmax))
+plt.yticks(np.arange(0.0, 321.0, 160.0), (ymin, 0.0, ymax))
 plt.title('Mandelbrot-Menge')
 
-plt.savefig('images/mandelbrot.png')
+dpi = 150
+plt.savefig('images/mandelbrot.png', dpi=dpi)
 plt.show()
