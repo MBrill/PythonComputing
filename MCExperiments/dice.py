@@ -11,26 +11,10 @@ rolls = 60000
 samples = rng.integers(1, 6, size=rolls, endpoint=True)
 
 # count the frequencies
-ones = samples == 1
-twos = samples == 2
-threes = samples == 3
-fours = samples == 4
-fives = samples == 5
-sixs = samples == 6
-
+result = np.bincount(samples)
 # relative frequencies
-oneF = samples[ones].size/rolls
-print(oneF)
-twoF = samples[twos].size/rolls
-print(twoF)
-threeF = samples[threes].size/rolls
-print(threeF)
-fourF = samples[fours].size/rolls
-print(fourF)
-fiveF = samples[fives].size/rolls
-print(fiveF)
-sixF = samples[sixs].size/rolls
-print(sixF)
+frequencies = result[1:]/rolls
+print(frequencies)
 
 # Cumulate the appearance of 1
 # do not use this code, the random generator is just to good ...
@@ -44,6 +28,7 @@ for i in np.arange(rolls):
 cumulative_counts /= rolls
 
 x = np.arange(0, rolls)
+plt.ylim(0.0, 0.18)
 plt.plot(x, cumulative_counts, 'g-')
 plt.title('Kumulierte relative Häufigkeiten für die Augenzahl 1')
 plt.savefig('images/relFreq1.png', dpi=150)

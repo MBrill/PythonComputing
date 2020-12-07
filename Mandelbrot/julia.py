@@ -75,6 +75,7 @@ ax = plt.imshow(M,
                 cmap=color_map,
                 interpolation='nearest',
                 origin='lower')
+
 plt.xlabel('')
 plt.ylabel('')
 plt.xticks(np.arange(0.0, 481.0, 240.0), (xmin, 0.0, xmax))
