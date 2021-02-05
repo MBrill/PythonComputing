@@ -22,4 +22,4 @@ if result:
     print('c liegt in der Mandelbrotmenge')
 else:
     print('c liegt nicht in der Mandelbrotmenge')
-    
+  
