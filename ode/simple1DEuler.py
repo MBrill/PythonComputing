@@ -41,10 +41,10 @@ plt.grid(True)
 
 # Grafische Ausgabe
 plt.plot(t, y, 'g-')
-plt.title('Lösung mit dem Eulerverfahren mit $h=0.1$')
+plt.title('Lösung mit dem Eulerverfahren mit $h=0.25$')
 plt.xlabel('t')
 plt.ylabel('y(t)')
 
 # Plot abspeichern
-# plt.savefig('images/euler2.png', dpi=150)
+plt.savefig('images/euler2.png', dpi=120)
 plt.show()

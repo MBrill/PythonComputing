@@ -24,9 +24,6 @@ def f(t, y):
     return (t + y)
 
 
-fig = plt.figure()
-plt.grid(True)
-
 a = 0.0
 b = 2.0
 n = 9
@@ -40,6 +37,9 @@ for i in np.arange(n):
     y[i+1] = y[i] + h*f(t[i], y[i])
 
 print(y)
+
+fig = plt.figure()
+plt.grid(True)
 plt.plot(t, y, 'g-', label='h=0.25')
 
 n = 21
@@ -59,5 +59,5 @@ plt.ylabel('y(t)')
 plt.legend()
 
 # Plot abspeichern
-plt.savefig('images/eulerdiff.png', dpi=150)
+# plt.savefig('images/eulerdiff.png', dpi=120)
 plt.show()
