@@ -131,3 +131,5 @@ dmypy.json
 
 # Verzeichnis mit erzeugten HTML-Dokus (doxygen)
 **/html/
+
+**/.idea/
