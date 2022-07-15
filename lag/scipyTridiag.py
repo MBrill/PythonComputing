@@ -36,7 +36,7 @@ def vectors_to_matrix(a, b, c):
 
 def matrix_to_vectors(ab):
     """
-    convert the ab-matrix.for solve_banded to three vectors
+    convert the ab-matrix for solve_banded to three vectors
 
     Parameters
     ----------
