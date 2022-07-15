@@ -6,7 +6,7 @@ import numpy as np
 
 
 # Funktionen
-def forward(n):
+def forward(n:int):
     """
     Iterative Berechnung des Integrals I_n aus I_0.
 
@@ -27,32 +27,28 @@ def forward(n):
     return values
 
 
-def backward(start, n, istart):
+def backward(start:int, n:int, istart:np.float64):
     """
-    Berechnung des Integrals I_n aus einem Startwert I_(start) mit start>n.
+    Berechnung des Integrals I_n aus einem Startwert I_(start) 
+    mit start>n.
 
     Parameters
     ----------
-    start : int
-        Index des Startwerts.
-    n : int
-        Index des Integrals, das berechnet werden soll.
-    istart : float
-        Wert des Integrals für den index start.
+    start : int,  Index des Startwerts.
+    n : int, Index des Integrals, das berechnet werden soll.
+    istart : float, Wert des Integrals für den index start.
 
     Returns
     -------
-    values : ndarray mit shape (start-n,)
-        Berechnete Werte der Integrale von I_(start) bis I_n.
-        I_(start) steht im Index 0 des Felds, der letzte berechnete
-        Wert steht im Index start-n.
+    values : ndarray mit shape (start-n+1,)
+        Startwert auf value[0],
+        berechnete Werte der Integrale von I_(start-1) bis I_n.
+        Der berechnete Wert steht im Index start-n, auf der letzten Stelle.
     """
-    values = np.zeros(shape=(start-n,), dtype=np.float64)
-    iterationValue = np.float64(istart)
-    values[0] = np.float64(istart)
+    values = np.zeros(shape=(start-n+1,), dtype=np.float64)
+    values[0] = istart
     for counter in range(start, n, -1):
-        iterationValue = (1.0-iterationValue)/float(counter)
-        values[start - counter] = iterationValue
+        values[start-counter+1] = (1.0-values[start-counter])/float(counter)
     return values
 
 
@@ -80,19 +76,20 @@ def main():
     -------
     None.
     """
+    
+    print('Berechnung mit der Funktion forward')
     n = 4
-    print('Berechnung von I_', n, 'mit beiden Iterationen')
     lower, upper = estimates(n)
-    print('Das Integral liegt zwischen', lower, 'und', upper, '.')
     results = forward(n)
-    print('Ergebnis der Berechnung ausgehend von I_0 ist', results[n])
+    print(n, lower, results[n], upper)
 
     start = 10
     istart = np.float64(1.0)
-    print('\nVerwendeter Startwert war', istart)
+    print('\nBerechnung mit der Funktion backward')
+    print('Startindex ist', start)
+    print('Verwendeter Startwert war', istart)
     results = backward(start, n, istart)
-    print('Ergebnis der Berechnung ausgehend von I_', start, ' ist',
-          results[start - n - 1])
+    print(n, lower, results[start - n], upper)
 
 
 if __name__ == "__main__":
