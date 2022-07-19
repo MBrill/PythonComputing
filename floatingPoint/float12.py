@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Computations using floating point numbers.
+Berechnungen mit Gleitpunktarithmetik
 
 Source: Schuppar, Elementare Numerik für die Sekundarstufe, Springer, 2015.
 """
