@@ -24,8 +24,9 @@ class Plane(shape.Shape):
     Berechnung eines Schnittpunkt mit einem Strahl
     
     Returns
-    true, falls es einen Schnittpunkt gibt. Dieser liegt dann
-    auf dem Parameter intersect.
+    True: falls es einen Schnittpunkt gibt. Dieser liegt dann
+          auf dem Parameter intersect.
+    False: es gibt keinen Schnittpunkt, intersect enthält den Nullvektor
     """
     def hit(self, r):
         nom = np.dot(self.p - r.p, self.n)

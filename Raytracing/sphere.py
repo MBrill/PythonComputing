@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Eine Kugel im Raum für einen Ray-Tracer
+
+Quellen: Suffern, Ray-Tracing from the Ground up, A.K. Peters
+         Shirley, Morley: Realistic Ray Tracing, A.K. Peters
 """
 import numpy as np
 import shape
@@ -21,11 +24,15 @@ class Sphere(shape.Shape):
         self.r = radius
     
     """
-    Berechnung eines Schnittpunkt mit einem Strahl
+    Berechnung eines Schnittpunkt mit einem Strahl.
+    
+    Nur der Fall, dass der Strahl die Kugel durchläuft, also nicht streift,
+    wird als Schnitt zurückgegeben!
     
     Returns
-    true, falls es einen Schnittpunkt gibt. Dieser liegt dann
-    auf dem Parameter intersect.
+    True: falls es einen Schnittpunkt gibt. Dieser liegt dann
+          auf dem Parameter intersect.
+    False: es gibt keinen Schnittpunkt, intersect enthält den Nullvektor
     """
     def hit(self, r):
         a = np.dot(r.d, r.d)
@@ -35,23 +42,26 @@ class Sphere(shape.Shape):
         b = 2.0*np.dot(diff, r.d)
         c = np.dot(diff, diff) - self.r**2
         D = b**2 - 4.0*a*c
-        if (D < -np.finfo(float).eps):
+        if (np.abs(D) <= np.finfo(float).eps):
             return False, np.zeros(shape=(3,))
         
         if (D > np.finfo(float).eps):
-            t1 = -b + np.sqrt(D)
-            t2 = -b - np.sqrt(D)
-            if t1 < -np.finfo(float).eps and t2 < -np.finfo(float).eps:
-                return False, np.zeros(shape=(3,))
-            if t1*t2 < 0.0:
-                if t1 > 0.0:
-                    return True, r.point(t1/(2.0*a))
+            t = (-b - np.sqrt(D))/(2.0*a)
+            if t>=0.0:
+                if t > np.finfo(float).eps:
+                    return True, r.point(t)
                 else:
-                    return True, r.point(t2/(2.0*a))
-            else:
-                return True, r.point(min(t1, t2)/(2.0*a))  
-        else:
-            return True, r.point(-b/(2.0*a))
+                    return False, np.zeros(shape=(3,))
+            
+            t = (-b + np.sqrt(D))/(2.0*a)
+            if t>=0.0:
+                if t > np.finfo(float).eps:
+                    return True, r.point(t)
+                else:
+                    return False, np.zeros(shape=(3,))
+
+        # Kein Schnittpunkt gefunden
+        return False, np.zeros(shape=(3,))            
         
      
     """
