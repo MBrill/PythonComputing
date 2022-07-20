@@ -8,7 +8,7 @@ import numpy as np
 # Genauigkeit für die Überprüfung auf zu kleine Werte bei Divisionen
 epsilon33 = np.float64(1.0e-10)
 
-def backSubstitution(a: np.float64):
+def backSubstitution(A):
     """
     Rückwärtssubstitution für eine 3x3 obere Dreiecksmatrix.
     
@@ -29,25 +29,25 @@ def backSubstitution(a: np.float64):
 
     Parameter
     ----------
-    a : ndarray mit shape (3,4)
+    A : ndarray mit shape (3,4)
         Erweiterte Koeffizientenmatrix mit der rechten Seite als letzte Spalte.
 
     Returns
     -------
     Berechnete Lösung des 3x3 Systems.
     """
-    if np.abs(a[0][0]*a[1][1]*a[2][2]) < epsilon33:
+    if np.abs(A[0][0]*A[1][1]*A[2][2]) < epsilon33:
         raise ZeroDivisionError 
         
     x = np.zeros(3, dtype=np.float64)
-    x[2] = a[2][3]/a[2][2]
-    x[1] = (a[1][3] - a[1][2]*x[2])/a[1][1]
-    x[0] = (a[0][3] - a[0][1]*x[1] - a[0][2]*x[2])/a[0][0]
+    x[2] = A[2,3]/A[2,2]
+    x[1] = (A[1,3] - A[1,2]*x[2])/A[1,1]
+    x[0] = (A[0,3] - A[0,1]*x[1] - A[0,2]*x[2])/A[0,0]
     
     return x
 
     
-def gauss(a: np.float64):
+def gauss(A):
     """
     Gauss-Elimination für die erweiterte Koeffizientenmatrix
     eines 3x3 linearen Gleichungssystems. Das Verfahren wir
@@ -65,7 +65,7 @@ def gauss(a: np.float64):
 
     Parameter
     ----------
-    a : ndarray mit shape (3, 4)
+    A : ndarray mit shape (3, 4)
         Erweiterte Koeffizientenmatrix
 
     Returns
@@ -73,33 +73,48 @@ def gauss(a: np.float64):
     Lösung des linearen Gleichungssystems
     """
     # Schritt 1
-    if np.abs(a[0][0]) <= epsilon33:
+    if np.abs(A[0][0]) <= epsilon33:
         raise ZeroDivisionError 
-    a[1, 1:] = a[1, 1:] - (a[1, 0]/a[0, 0]) * a[0, 1:]
-    a[2, 1:] = a[2, 1:] - (a[2, 0]/a[0, 0]) * a[0, 1:]
+    A[1, 1:] = A[1, 1:] - (A[1, 0]/A[0, 0]) * A[0, 1:]
+    A[2, 1:] = A[2, 1:] - (A[2, 0]/A[0, 0]) * A[0, 1:]
     # Schritt 2
-    if np.abs(a[1][1]) <= epsilon33:
+    if np.abs(A[1][1]) <= epsilon33:
         raise ZeroDivisionError 
-    a[2, 2:] = a[2, 2:] - (a[2, 1]/a[1, 1]) * a[1, 2:]
+    A[2, 2:] = A[2, 2:] - (A[2, 1]/A[1, 1]) * A[1, 2:]
 
 
-def solve(a: np.float64):
+def solve(A):
     """
     Zusammenfassung der Elimination und der Rückwärtssubstitution
     in einer Funktion zum einfacheren Anwenden der Implementierung.
+    
+    Wir überprüfen die Lösbarkeit des Systems nach der Elimination
+    und geben True plus eine Lösung zurück, falls eine eindeutige Lösung
+    gibt. Gibt es keine Lösungen wird False zurückgegeben, und
+    ein Lösungesvektor mit NaN. Gibt es unendlich viele Lösungen wird ebenfalls
+    False zurückgegeben und der Nullvektor.
 
 
     Parameter
     ----------
-    a : ndarray mit shape (3, 4)
+    A : ndarray mit shape (3, 4)
         Erweiterte Koeffizientenmatrix
 
     Returns
     -------
     Lösung des linearen Gleichungssystems
     """  
-    gauss(a)
-    return backSubstitution(a)
+    gauss(A)
+	# Falls wir noch keine Exception erhalten haben, 
+	# sind die beiden ersten Pivot-Elemente ok. 
+	# Jetzt überprüfen wir noch, ob es eine eindeutige Lösung gibt.
+    if np.abs(A[2,2]) < epsilon33:
+        if np.abs(A[2,3]) < epsilon33:
+            return False, np.zeros(shape=(3,))
+        else:
+            return False, np.array([np.NAN, np.NAN, np.NAN])
+    # Eindeutige Lösung
+    return True, backSubstitution(A)
  
    
 def main():
@@ -165,9 +180,14 @@ def main():
     a = np.array([[1.0, -1.0, 0.0,  5.0],
                   [-1.0, 2.0, -1.0, 0.0],
                   [0.0, -1.0,  2.0, 1.0]])
-    solve(a)
-    print('Berechnete Lösung mit der Funktion solve:')
-    print(x)
+    
+    ok, x = solve(a)
+    if ok:
+        print('Es gibt eine eindeutige Lösung!')
+        print('Berechnete Lösung mit der Funktion solve:')
+        print(x)
+    else:
+        print('Keine Lösung oder unendlich viele Lösungen')
     
 
 if __name__ == "__main__":

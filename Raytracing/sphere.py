@@ -69,8 +69,8 @@ class Sphere(shape.Shape):
     
     Returns
     -------
-    TRUE falls der Punkt in der ebene liegt,
-    FALSE sonst
+    True falls der Punkt auf der Kugel liegt,
+    False sonst
     """
     def onSphere(self, point:np.ndarray):
         diff = np.array(self.m  - point)
