@@ -8,7 +8,7 @@ import sys
 
 def backSubstitution(a: np.float64):
     """
-    Back substitution for a simple Gauss algorithm. Call this
+    Backsubstitution for a simple Gauss algorithm. Call this
     function after eliminating the extended coefficient matrix.
 
     We expect all diagonal elements to be non-zero.
@@ -67,7 +67,7 @@ def gauss(a):
 
 def main():
     """
-    Code to demonstrate gauss elimination and back substitution.
+    Code to demonstrate gauss elimination and backsubstitution.
 
     Returns
     -------
