@@ -223,7 +223,5 @@ def main():
         print("Kein Schnittpunkt!")  
         
 
-
-    
 if __name__ == "__main__":
     main()
