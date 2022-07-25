@@ -151,12 +151,12 @@ def main():
 
     # Korrektes Ergebnis der Elimination
     ac = np.array([[1.0, -1.0, 0.0,  5.0],
-                   [-0.0, 1.0, -1.0, 5.0],
+                   [0.0, 1.0, -1.0, 5.0],
                    [0.0, -0.0,  1.0, 6.0]])
     
     print('Das korrekte Ergebnis der Elimination:')
     print(ac)
-    
+    print('Achtung: die elminierte Matrix wird unterhalb der Diagonale nicht verändert!')
     gauss(a)
     print('Das Ergebnis der Elimination:')
     print(a)
