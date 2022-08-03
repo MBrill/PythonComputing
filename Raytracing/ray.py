@@ -49,9 +49,7 @@ def main():
     point = np.zeros(shape=(3,))
     direction = np.ones(shape=(3,))
     ray = Ray(point, direction)
-
     ray.print()
-
     print("Ein Punkt auf dem Strahl für t=2:", ray.point(2.0))
 
 

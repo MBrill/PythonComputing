@@ -6,7 +6,7 @@ import numpy as np
 import intrek as ir
 
 
-def doit(n:int, start:int, istart:np.float64):
+def doit(n: int, start: int, istart: np.float64):
     results = ir.backward(start, n, istart)
     print('Startindex ist', start)
     print('Verwendeter Startwert war', istart)
