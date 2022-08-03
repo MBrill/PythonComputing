@@ -6,7 +6,7 @@ import numpy as np
 
 
 # Funktionen
-def forward(n:int):
+def forward(n: int):
     """
     Iterative Berechnung des Integrals I_n aus I_0.
 
@@ -27,9 +27,9 @@ def forward(n:int):
     return values
 
 
-def backward(start:int, n:int, istart:np.float64):
+def backward(start: int, n: int, istart: np.float64):
     """
-    Berechnung des Integrals I_n aus einem Startwert I_(start) 
+    Berechnung des Integrals I_n aus einem Startwert I_(start)
     mit start>n.
 
     Parameters
@@ -76,7 +76,7 @@ def main():
     -------
     None.
     """
-    
+
     print('Berechnung mit der Funktion forward')
     n = 4
     lower, upper = estimates(n)
