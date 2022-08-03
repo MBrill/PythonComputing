@@ -4,15 +4,11 @@ Fallstudie: Invertierung der Hilbert-Matrix
 """
 
 import numpy as np
-from scipy import linalg
-
-
-
-
 
 
 # We solve a linear equation system for the columns of Hinv
 # Use the identiy matrix as right hand side
+n = 7
 rhs = np.identity(n)
 
 computed_inv = np.linalg.solve(hilbert, rhs)

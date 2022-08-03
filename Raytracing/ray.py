@@ -7,30 +7,35 @@ import numpy as np
 """
 Ein Strahl, gegeben durch einen Punkt im Raum und einen Richtungsvektor.
 """
+
+
 class Ray:
     """
     Konstruktor
     """
-    def __init__(self, 
-                 point, 
+
+    def __init__(self,
+                 point,
                  direction):
         self.p = point
         self.d = direction
-    
+
     """
     Punkt auf dem Strahl für einen Parameterwert t
     """
-    def point(self, t:np.float64):
+
+    def point(self, t: np.float64):
         return(self.p + t*self.d)
-    
+
     """
     Ausgabe auf der Konsole
     """
+
     def print(self):
         print("Strahl")
         print("Punkt:", self.p)
         print("Richtungsvektor", self.d)
-        
+
 
 def main():
     """
@@ -44,9 +49,9 @@ def main():
     point = np.zeros(shape=(3,))
     direction = np.ones(shape=(3,))
     ray = Ray(point, direction)
-    
+
     ray.print()
-    
+
     print("Ein Punkt auf dem Strahl für t=2:", ray.point(2.0))
 
 

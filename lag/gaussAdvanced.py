@@ -3,7 +3,6 @@
 Backsubstitution and simple implementation of the Gauss algorithm.
 """
 import numpy as np
-import sys
 
 
 def backSubstitution(a: np.float64):
@@ -33,7 +32,6 @@ def backSubstitution(a: np.float64):
             res = res - a[i][j]*x[j]
         x[i] = res / a[i][i]
     return x
-
 
 
 def gauss(a):

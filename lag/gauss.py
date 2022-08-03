@@ -109,7 +109,7 @@ def main():
     x = backSubstitution(a)
     print('Computed solution')
     print(x)
-    
+
 
 if __name__ == "__main__":
     main()

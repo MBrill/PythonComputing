@@ -9,23 +9,24 @@ import ray
 class Shape:
     """
     Basisklasse für geometrische Objekte.
-    
+
     Kein Konstruktor, virtuelle Funktion hit für Schnittberechnungen.
-    
-    Wir müssten die virtuelle Funktion hit nicht implementieren. 
-    Das gewählte Vorgehen entspricht den Empfehlungen in der 
+
+    Wir müssten die virtuelle Funktion hit nicht implementieren.
+    Das gewählte Vorgehen entspricht den Empfehlungen in der
     Python3-Dokumentation.
     """
+
     def hit(self, r):
         raise NotImplementedError()
-        
-    
+
     """
     Ausgabe auf der Konsole
     """
+
     def print(self):
         print("Basiklasse Shape")
-        
+
 
 def main():
     """
@@ -38,13 +39,12 @@ def main():
     """
     shape = Shape()
     shape.print()
-    
+
     rayPoint = np.zeros(shape=(3,))
     direction = np.array([1.0, 1.0, 1.0])
     r = ray.Ray(rayPoint, direction)
-    shape.hit(r)  
+    shape.hit(r)
 
-    
-    
+
 if __name__ == "__main__":
     main()
