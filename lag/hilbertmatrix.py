@@ -18,7 +18,6 @@ n = 3
 print('n=', n)
 print(linalg.invhilbert(n))
 
-# Exakte und angehäherte Werte
 n = 4
 print('n=', n)
 print(linalg.invhilbert(n))
