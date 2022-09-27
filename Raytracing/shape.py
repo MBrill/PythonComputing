@@ -25,7 +25,7 @@ class Shape:
     """
 
     def print(self):
-        print("Basiklasse Shape")
+        print("Basisklasse Shape")
 
 
 def main():
