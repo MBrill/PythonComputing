@@ -48,7 +48,8 @@ def backward(start: int, n: int, istart: np.float64):
     values = np.zeros(shape=(start-n+1,), dtype=np.float64)
     values[0] = istart
     for counter in range(start, n, -1):
-        values[start-counter+1] = (1.0-values[start-counter])/float(counter)
+        values[start-counter+1] = (1.0-values[start-counter])/
+        float(counter)
     return values
 
 
