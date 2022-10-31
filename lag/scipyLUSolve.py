@@ -1,27 +1,30 @@
 # -*- coding: utf-8 -*-
 """
-Use lu_factor and lu_solve for solving a linear equation system
+LU-Zerlegung in SciPy und Auflösung des linearen Gleichungssystems
 """
 import numpy as np
 from scipy import linalg
 
-a = np.array([[2, 5, 8, 7],
-              [5, 2, 2, 8],
-              [7, 5, 6, 6],
-              [5, 4, 4, 8]
+A = np.array([[3, 1, 6],
+              [2, 1, 3],
+              [1, 1, 1]
               ])
-b = np.array([1, 1, 1, 1])
 
-lu, piv = linalg.lu_factor(a)
+lu, piv = linalg.lu_factor(A)
 
-print('LU factorization')
-print('Permutation matrix after the LU factorization\n')
+print('Die berechnete Permutationsmatrix\n')
 print(piv)
-print('The matrix L and U\n')
+print('Die Matrizen L und U in einer Matrix\n')
 print(lu)
 
+b = np.array([10, 6, 3])
 x = linalg.lu_solve((lu, piv), b)
-print('Computed solution', x)
+print('Die berechnete Lösung: ', x)
 
-if np.allclose(a @ x - b, np.zeros((4,))):
-    print('Everything worked')
+if np.allclose(A @ x - b, np.zeros((3,))):
+    print('Alles korrekt berechnet')
+
+# Noch eine rechte Seite
+b = np.array([2, 1, 3])
+x = linalg.lu_solve((lu, piv), b)
+print('Die berechnete Lösung: ', x)
