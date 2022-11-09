@@ -3,12 +3,11 @@
 Backsubstitution and simple implementation of the Gauss algorithm.
 """
 import numpy as np
-import sys
 
 
 def backSubstitution(a: np.float64):
     """
-    Back substitution for a simple Gauss algorithm. Call this
+    Backsubstitution for a simple Gauss algorithm. Call this
     function after eliminating the extended coefficient matrix.
 
     We expect all diagonal elements to be non-zero.
@@ -35,15 +34,6 @@ def backSubstitution(a: np.float64):
     return x
 
 
-def cool3(a):
-    # n=3
-    # Schritt 1
-    a[1, 1:] = a[1, 1:] - (a[1, 0]/a[0, 0]) * a[0, 1:]
-    a[2, 1:] = a[2, 1:] - (a[2, 0]/a[0, 0]) * a[0, 1:]
-    # Schritt 2
-    a[2, 2:] = a[2, 2:] - (a[2, 1]/a[1, 1]) * a[1, 2:]
-
-
 def gauss(a):
     """
     Gauss-Elimation using slicing
@@ -67,7 +57,7 @@ def gauss(a):
 
 def main():
     """
-    Code to demonstrate gauss elimination and back substitution.
+    Code to demonstrate gauss elimination and backsubstitution.
 
     Returns
     -------

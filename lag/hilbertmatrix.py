@@ -1,45 +1,118 @@
 # -*- coding: utf-8 -*-
 """
-The Hilbert matrix.
+Fallstudie: die Hilbert-Matrx
 """
-
 import numpy as np
 from scipy import linalg
 
-# Output the Hilbert matrix
-n = 9
-hilbert = linalg.hilbert(n)
-print('Hilbert Matrix for n=', n)
-print(hilbert)
+n = 3
+print('n=', n)
+print(linalg.hilbert(n))
 
-# The inverse of the Hilbert matrix is known exactly
-# and contains (in theory) only integer values.
-# For values of n bigger than 14 the integers in the
-# inverse Hilbert matrix are bigger than the integers
-# we can work with.
-# use invhilbert(n, exact = False) from n>=15 on.
-# from scipy docs:
-# invhilbert(16)[7,7]
-# 4.2475099528537506e+19
-# invhilbert(16, exact=True)[7,7]
-# 42475099528537378560
-hilbert_inv = linalg.invhilbert(n)
-print('Inverse of Hilbert Matrix for n=', n)
-print(hilbert_inv)
+n = 4
+print('n=', n)
+print(linalg.hilbert(n))
 
-# H * Hinv should be the identity matrix
-print('The product of H and the inverse should be the identy matrix')
-print(np.matmul(hilbert, hilbert_inv))
+print('Inverse Hilbert-Matrizen')
+n = 3
+print('n=', n)
+print(linalg.invhilbert(n))
 
-# We solve a linear equation system for the columns of Hinv
-# Use the identiy matrix as right hand side
+n = 4
+print('n=', n)
+print(linalg.invhilbert(n))
+
+
+# invhilbert(n, exact = False) ab n>=15 verwenden.
+n = 15
+k = 14
+x = linalg.invhilbert(n, exact=True)[k, k]
+y = linalg.invhilbert(n, exact=False)[k, k]
+print(x)
+print(y)
+
+n = 25
+k = 24
+x = linalg.invhilbert(n, exact=True)[k, k]
+y = linalg.invhilbert(n, exact=False)[k, k]
+print(x)
+print(y)
+
+# Ist das Produkt gleich der Einheitsmatrix?
+print('Tests für das Produkt')
+n = 5
+H = linalg.hilbert(n)
+Hinv = linalg.invhilbert(n)
+
+if np.allclose(H @ Hinv, np.identity(n)):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+n = 7
+H = linalg.hilbert(n)
+Hinv = linalg.invhilbert(n)
+
+if np.allclose(H @ Hinv, np.identity(n)):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+n = 8
+H = linalg.hilbert(n)
+Hinv = linalg.invhilbert(n)
+
+if np.allclose(H @ Hinv, np.identity(n)):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+n = 15
+H = linalg.hilbert(n)
+Hinv = linalg.invhilbert(n)
+
+if np.allclose(H @ Hinv, np.identity(n)):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+# Eigene Berechnung der inversen Hilbert-Matrix
+print('Mit linalg.solve berechnete inverse Hilbert-Matrix')
+n = 5
+rhs = np.identity(n)
+computed_inv = np.linalg.solve(linalg.hilbert(n), rhs)
+Hinv = linalg.invhilbert(n, exact=False)
+if np.allclose(computed_inv - Hinv, np.zeros(shape=(n, n)), atol=0.001):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+n = 7
+rhs = np.identity(n)
+computed_inv = np.linalg.solve(linalg.hilbert(n), rhs)
+Hinv = linalg.invhilbert(n, exact=False)
+if np.allclose(computed_inv - Hinv, np.zeros(shape=(n, n)), atol=0.001):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
+
+n = 12
 rhs = np.identity(n)
 
-computed_inv = np.linalg.solve(hilbert, rhs)
-print('Result of the computation of the inverse using linalg.solve')
-print(computed_inv)
+computed_inv = np.linalg.solve(linalg.hilbert(n), rhs)
+Hinv = linalg.invhilbert(n, exact=False)
+if np.allclose(computed_inv - Hinv, np.zeros(shape=(n, n)), atol=0.001):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')
 
-print('Relative Error for computing the inverse of a Hilbert matrix')
-print('n = ', n)
-# relativer Fehler noch implementieren!
-print(np.linalg.norm(hilbert_inv - computed_inv))
+# Jetzt mit SciPy, dann erhalten wir eine Warnung
+n = 12
+rhs = np.identity(n)
+
+computed_inv = linalg.solve(linalg.hilbert(n), rhs)
+Hinv = linalg.invhilbert(n, exact=False)
+if np.allclose(computed_inv - Hinv, np.zeros(shape=(n,  n)), atol=0.001):
+    print('Bei n =', n, ' ist alles ok')
+else:
+    print('Bei n =', n, ' ist etwas schief gegangen')

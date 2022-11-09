@@ -6,7 +6,8 @@ import intrek as ir
 
 n = 30
 values = ir.forward(n)
-print('Index, untere Grenze, berechneter Wert, obere Grenze')
+print('Index, Untere Grenze, Berechneter Wert, Obere Grenze')
+
 for i in range(n+1):
     lower, upper = ir.estimates(i)
-    print('i', i, lower, values[i], upper)
+    print(i, lower, values[i], upper)

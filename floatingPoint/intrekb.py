@@ -6,30 +6,30 @@ import numpy as np
 import intrek as ir
 
 
-def doit(n, start, istart):
+def doit(n: int, start: int, istart: np.float64):
     results = ir.backward(start, n, istart)
-    print('Ausgehend von Startindex', start)
-    print('Startwert', istart, '.')
-    print('Ausgegeben werden immer:')
-    print('Index, untere Grenze, berechnter Wert, obere Grenze')
-    lower, upper = ir.estimates(start)
-    print('i', start, lower, istart, upper)
-    for i in range(start - n):
-        lower, upper = ir.estimates(start-i-1)
-        print('i', start-i-1, lower, results[i], upper)
+    print('Startindex ist', start)
+    print('Verwendeter Startwert war', istart)
+    print('Index, Untere Grenze, Berechnter Wert, Obere Grenze')
+    for i in range(start - n + 1):
+        lower, upper = ir.estimates(start-i)
+        print(start-i, lower, results[i], upper)
 
 
 n = 30
 start = 50
+
+# Erster Startwert: 1.0
 istart = np.float64(1.0)
+print('\n')
 doit(n, start, istart)
 
-# Nochmal die Berechnung, aber mit einem anderen Startwert
+# Zweiter Startwert: 100000
 istart = np.float64(100000.0)
 print('\n')
 doit(n, start, istart)
 
-# Nochmal die Berechnung, aber mit einem anderen Startwert
+# Dritter Startwert: -100000
 istart = np.float64(-100000.0)
 print('\n')
 doit(n, start, istart)

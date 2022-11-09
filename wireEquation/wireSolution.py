@@ -5,7 +5,7 @@ Solving the wire equation using NumPy and SciPy.
 We could use our own tridiagonal LU solver,
 or just solve from numpy.linalg.
 
-Here we use the solve_banded from scipy. N
+Here we use the solve_banded from scipy.
 Note we do not use the symmetry of the matrix.
 """
 import numpy as np
