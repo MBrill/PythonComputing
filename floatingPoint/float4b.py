@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Lösung der quadratischen Gleichung für Werte von p und q für die Fehleranalyse.
+Lösung der quadratischen Gleichung für Werte
+von p und q für die Fehleranalyse.
 
 Lösung der Aufgabe float4b.
 """

@@ -55,7 +55,7 @@ def numberTwo(p, q):
 
 def evaluate(p, q, x):
     """
-    Auswertung des quadratischen Polynoms x*+2+2px+q an der Stelle x.
+    Auswertung des quadratischen Polynoms x**2+2px+q an der Stelle x.
 
     Parameters
     ----------
