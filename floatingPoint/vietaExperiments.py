@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Lösung der quadratischen Gleichung für Werte von p und q für die Fehleranalyse.
-
-Lösung der Aufgabe float4b.
+Lösung der quadratischen Gleichung für Werte
+von p und q für die Fehleranalyse.
 """
 import numpy as np
-import float4a as fl
+import vieta
 
 # Werte für p und q produzieren
 n = 20
@@ -20,8 +19,8 @@ print('die Werte q = 0.1, 0.01, ..., 10^(-20)!')
 
 # Wir führen die Berechnung durch und speichern die Ergebnisse
 # für eine übersichtliche Ausgabe
-sol1 = fl.numberOne(p, q)
-sol2 = fl.numberTwo(p, q)
+sol1 = vieta.numberOne(p, q)
+sol2 = vieta.numberTwo(p, q)
 
 for i in range(n):
     print('k =', i+1, '1:', sol1[i], '2:', sol2[i])
@@ -30,8 +29,8 @@ for i in range(n):
 # Formel berechnet haben in das Polynom ein, mit fl.evaluate
 print('Test mit den Ergebnissen aus Formel 2')
 print('Wir setzen die Ergebnisse in das quadratische Polynom ein:')
-print(fl.evaluate(p, q, sol2))
+print(vieta.evaluate(p, q, sol2))
 
 print('Test mit den Ergebnissen aus Formel 1')
 print('Wir setzen die Ergebnisse in das quadratische Polynom ein:')
-print(fl.evaluate(p, q, sol1))
+print(vieta.evaluate(p, q, sol1))

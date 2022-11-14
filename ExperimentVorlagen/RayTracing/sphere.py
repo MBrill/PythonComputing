@@ -36,33 +36,7 @@ class Sphere(shape.Shape):
               auf dem Parameter intersect.
         False: es gibt keinen Schnittpunkt, intersect enthält den Nullvektor
         """
-        a = np.dot(r.d, r.d)
-        if np.abs(a) < np.finfo(float).eps:
-            raise ZeroDivisionError
-        diff = r.p - self.m
-        b = 2.0*np.dot(diff, r.d)
-        c = np.dot(diff, diff) - self.r**2
-        D = b**2 - 4.0*a*c
-        if (np.abs(D) <= np.finfo(float).eps):
-            return False, np.zeros(shape=(3,))
-
-        if (D > np.finfo(float).eps):
-            t = (-b - np.sqrt(D))/(2.0*a)
-            if t >= 0.0:
-                if t > np.finfo(float).eps:
-                    return True, r.point(t)
-                else:
-                    return False, np.zeros(shape=(3,))
-
-            t = (-b + np.sqrt(D))/(2.0*a)
-            if t >= 0.0:
-                if t > np.finfo(float).eps:
-                    return True, r.point(t)
-                else:
-                    return False, np.zeros(shape=(3,))
-
-        # Kein Schnittpunkt gefunden
-        return False, np.zeros(shape=(3, ))
+        raise NotImplementedError()
 
     def onSphere(self, point: np.ndarray):
         """

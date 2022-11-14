@@ -7,6 +7,18 @@ import intrek as ir
 
 
 def doit(n: int, start: int, istart: np.float64):
+    """
+    Durchführung des Experiments für die Rückwärts-Iteration
+
+    Parameters
+    ----------
+    n : int
+        Welches Integral soll berechnet werden?.
+    start : int
+        Mit welchem Index (start > n) möchten wir beginnen?.
+    istart : np.float64
+        Welchen Startwert verwenden wir?.
+    """
     results = ir.backward(start, n, istart)
     print('Startindex ist', start)
     print('Verwendeter Startwert war', istart)

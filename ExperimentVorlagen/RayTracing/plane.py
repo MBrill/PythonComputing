@@ -30,19 +30,11 @@ class Plane(shape.Shape):
               auf dem Parameter intersect.
         False: es gibt keinen Schnittpunkt, intersect enthält den Nullvektor
         """
-        nom = np.dot(self.p - r.p, self.n)
-        denom = np.dot(r.d, self.n)
-
-        if denom != 0.0:
-            t = nom/denom
-            intersect = r.point(t)
-            return True, intersect
-        else:
-            return False, np.zeros(shape=(3,))
+        raise NotImplementedError()
 
     def inPlane(self, point):
         """
-        Liegt ein Punkt in der Ebene?
+        Liegt der übergebene Punkt in der Ebene?
 
         Returns
         -------
