@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Verschiedene Alternativen für die Vieta'sche Formel.
+Implementieren Sie die Funktionen numberOne und numberTwo
+für die Lösung einer quadratischen Gleichung.
 
-Lösung der Aufgabe float4a.
+Implementieren Sie zusätzlich die Funktion evaluate für das
+Auswerte eines quadratischen Polynoms an einer gegebenen
+x-Stelle.
 """
 import numpy as np
 
@@ -27,7 +30,7 @@ def numberOne(p, q):
         Lösung der quadratischen Gleichung mit kleinerem Absolutbetrag.
 
     """
-    return -p + np.sqrt(p*p-q)
+    raise NotImplementedError()
 
 
 def numberTwo(p, q):
@@ -50,7 +53,7 @@ def numberTwo(p, q):
         Lösung der quadratischen Gleichung mit kleinerem Absolutbetrag.
 
     """
-    return (-q)/(p + np.sqrt(p*p-q))
+    raise NotImplementedError()
 
 
 def evaluate(p, q, x):
@@ -70,7 +73,7 @@ def evaluate(p, q, x):
     -------
     Ergebnis der Auswertung als float-Wert.
     """
-    return np.polyval([1.0, 2.0*p, q], x)
+    raise NotImplementedError()
 
 
 def main():
@@ -81,9 +84,13 @@ def main():
     -------
     None.
     """
+
+    # Drei Werte für p und q
     p = np.array([3.0, 4.0, 5.0])
     q = np.array([8.0, 7.0, 9.0])
+    # Die exakte Lösung der drei Gleichungen
     correct = np.array([-2.0, -1.0, -1.0])
+    # Lösungen berechnen mit Variante 1
     x = numberOne(p, q)
     print('Test der Funktion numberOne')
     for i in range(3):
@@ -91,6 +98,7 @@ def main():
               p[i], ' und q = ', q[i], ' ist ', correct[i])
         print('Lösung mit Hilfe der Funktion: x = ', x[i])
 
+    # Lösungen berechnen mit Variante 2
     x = numberTwo(p, q)
     print('\nTest der Funktion numberTwo')
     for i in range(3):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ein Dreieck im Raum für einen Ray-Tracer
+Ein Dreieck im Raum für einen Ray-Tracer.
 
 Quellen: Suffern, Ray-Tracing from the Ground up, A.K. Peters
          Shirley, Morley: Realistic Ray Tracing, A.K. Peters
@@ -71,26 +71,7 @@ class Triangle(shape.Shape):
               auf dem Parameter intersect.
         False: es gibt keinen Schnittpunkt, intersect enthält den Nullvektor
         """
-        # Matrix besetzen
-        A = np.zeros(shape=(3, 4), dtype=np.float64)
-        A[0:, 0] = self.p2 - self.p1
-        A[0:, 1] = self.p3 - self.p1
-        A[0:, 2] = -r.d
-        A[0:, 3] = r.p - self.p1
-
-        ok, solution = lgs33.solve(A)
-        if not ok:
-            return False, np.zeros(shape=(3,))
-        if ok:
-            if solution[2] < 0.0:
-                return False, np.zeros(shape=(3,))
-            else:
-                coords = np.array([1.0-solution[0]-solution[1],
-                                   solution[0],
-                                   solution[1]])
-
-                if self.checkBaryCoords(coords):
-                    return True, r.point(solution[2])
+        raise NotImplementedError()
 
     def inTriangle(self, point: np.ndarray):
         """

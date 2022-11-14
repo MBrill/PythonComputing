@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Eine Implementierung des Gauß-Algorithmus
-und der Rückwärtssubstitution für das Ray-Tracen von Dreiecken.
+ und Eine Implementierung des Gauß-Algorithmus
+und der Rückwärtssubstitution für das Ray-Tracing von Dreiecken.
 """
 import numpy as np
 
@@ -156,7 +156,7 @@ def main():
 
     print('Das korrekte Ergebnis der Elimination:')
     print(ac)
-    print('Achtung: die elminierte Matrix wird unterhalb der Diagonale nicht verändert!')
+    print('Achtung: die eliminierte Matrix wird unterhalb der Diagonale nicht verändert!')
     gauss(a)
     print('Das Ergebnis der Elimination:')
     print(a)
