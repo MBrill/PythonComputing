@@ -9,7 +9,7 @@ Use Cholesky algorithm for a positive definite matrix
 import numpy as np
 from scipy import linalg
 
- 
+
 A = np.array([[1, 2, 1],
              [2, 5, 2],
              [1, 2, 10]])
@@ -52,8 +52,8 @@ if np.allclose(x, xexact):
 
 if np.allclose(A @ x - b, np.zeros((3,))):
     print('Ok')
-    
-# Das Beispiel von schwarz amit linalg.solve
+
+# Das Beispiel von Schwarz mit linalg.solve
 print('Mit linalg.solve')
 x = linalg.solve(A, b, assume_a='sym')
 if np.allclose(x, xexact):

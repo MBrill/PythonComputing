@@ -14,12 +14,12 @@ lu, piv = linalg.lu_factor(A)
 
 print('Die berechnete Permutationsmatrix\n')
 print(piv)
-print('Die Matrizen L und U in einer Matrix\n')
+print('\nDie Matrizen L und U in einer Matrix\n')
 print(lu)
 
 b = np.array([10, 6, 3])
 x = linalg.lu_solve((lu, piv), b)
-print('Die berechnete Lösung: ', x)
+print('\nDie berechnete Lösung: ', x)
 
 if np.allclose(A @ x - b, np.zeros((3,))):
     print('Alles korrekt berechnet')
@@ -28,3 +28,5 @@ if np.allclose(A @ x - b, np.zeros((3,))):
 b = np.array([2, 1, 3])
 x = linalg.lu_solve((lu, piv), b)
 print('Die berechnete Lösung: ', x)
+if np.allclose(A @ x - b, np.zeros((3,))):
+    print('Alles korrekt berechnet')

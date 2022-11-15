@@ -15,6 +15,7 @@ def numberOne(p, q):
     Berechnung der Lösung der quadratischen Gleichung x**2+2px+q=0 mit
     kleinerem Absolutbetrag.
 
+
     Wir verwenden die Standard Formulierung x = -p + sqrt(p**2-q)
 
     Parameter
