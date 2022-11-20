@@ -7,43 +7,40 @@ import numpy as np
 from scipy.linalg import solve_banded
 import matplotlib.pyplot as plt
 
-# our system and the parameters of the wire equation
-# boundary condition
-ya = -1.0
-yb = 2.0
-# constant force (don't forget the minus sign!)
-f = -20.0
-# length of our wire
-length = 1.0
-# discretization parameters
+# Wie hoch ist das Kabel an den beiden Enden in y?
+ya = 5.0
+yb = 3.0
+# Wo ist der rechte Punkt des Kabels auf der x-Achse?
+length = 3.0
+# Krafvektor mit konstantem Wert - der Wert muss negativ sein!
+f = -30.0
+
+# Wie fein ist die Diskretisierung?
 n = 50
 h = length/n
 
-# Tridiagolmatrix als SciPy Bandmatrix
-lowerDiag = 1
-upperDiag = 1
-diag = 2.0
-offdiag = -1.0
+# Tridiagonalmatrix als SciPy Bandmatrix
+diagElement = 2.0
+offdiagElement = -1.0
+upperCount = 1
+lowerCount = 1
 aa = np.zeros((3, n))
-aa[0, 1:] = offdiag
-aa[1, :] = diag
-aa[2, :-1] = offdiag
+aa[0, 1:] = offdiagElement
+aa[1, :] = diagElement
+aa[2, :-1] = offdiagElement
 # rechte Seite
-b = np.zeros((n, 1))
-b[:] = h*h*f
+b = np.full((n, 1), fill_value=h*h*f)
 # Randbedingungen in die rechte Seite einpflegen
 b[0] += ya
 b[-1] += yb
-# SciPy aufrufen. Die Bandmatrix
-# ist durch (lowerDiag, upperDiag), aa gegeben.
-x = solve_banded((1, 1), aa, b)
 
-# Vis
-# Wir fügen die Randpunkten mit Hilfe von a und b hinzu.
-# und verwenden Matplotlib.
+# SciPy Solver aufrufen.
+x = solve_banded((upperCount, lowerCount), aa, b)
+
+# Der Polygonzug für die Visualisierung liegt auf wireX, wireY
+# Wir fügen die Randpunkte mit Hilfe von ya und yb hinzu.
 wireX = np.linspace(0.0, length, n+2)
 wireY = np.linspace(0.0, length, n+2)
-
 wireY[0] = ya
 wireY[1: -2] = x[:-1, 0]
 wireY[n] = x[-1, 0]
@@ -52,11 +49,12 @@ wireY[n+1] = yb
 fig = plt.figure(figsize=(16.0, 9.0))
 plt.figure(dpi=600)
 plt.grid(True)
-plt.axis([0.0, length, np.floor(wireY.min()), max(ya, yb)+1.0])
-plt.xticks([])
-# plt.yticks([])
+plt.axis([0.0, length, np.floor(wireY.min())-1.0, max(ya, yb)+1.0])
 plt.plot(wireX, wireY, 'g-')
+# Randpunkte ausgeben
+plt.plot(0.0, wireY[0], 'ks')
+plt.plot(length, wireY[n+1], 'ks')
 plt.title('Lösung der Kabelgleichung')
 
-# plt.savefig('images/pdf2.png')
+plt.savefig('images/wiren50a5b3.png')
 plt.show()
