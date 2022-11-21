@@ -62,7 +62,6 @@ print('The coefficients of the functions \n', x[0], x[1])
 xvals = np.linspace(0.0, 3.0, num=50)
 yvals = x[0]*f1(xvals) + x[1]*f2(xvals)
 
-
 fig = plt.figure(figsize=(16.0, 9.0))
 plt.title('Model')
 plt.xlabel('x')
