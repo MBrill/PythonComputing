@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Example for quadratic regression using numpy.polyfit
+Lineare Ausgleichsrechnung mit einer Parabel
 """
 import numpy as np
 import matplotlib.pyplot as plt

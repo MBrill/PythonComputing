@@ -9,15 +9,15 @@ import matplotlib.pyplot as plt
 
 # Wie hoch ist das Kabel an den beiden Enden in y?
 ya = 5.0
-yb = 3.0
+yb = 4.0
 # Wo ist der rechte Punkt des Kabels auf der x-Achse?
 length = 3.0
 # Krafvektor mit konstantem Wert - der Wert muss negativ sein!
-f = -30.0
+f = 30.0
 
 # Wie fein ist die Diskretisierung?
-n = 50
-h = length/n
+n = 51
+h = length/(n-1)
 
 # Tridiagonalmatrix als SciPy Bandmatrix
 diagElement = 2.0
@@ -28,14 +28,13 @@ aa = np.zeros((3, n))
 aa[0, 1:] = offdiagElement
 aa[1, :] = diagElement
 aa[2, :-1] = offdiagElement
-# rechte Seite
-b = np.full((n, 1), fill_value=h*h*f)
-# Randbedingungen in die rechte Seite einpflegen
-b[0] += ya
-b[-1] += yb
+
+rhs = np.full((n, 1), fill_value=-h*h*f)
+rhs[0] += ya
+rhs[-1] += yb
 
 # SciPy Solver aufrufen.
-x = solve_banded((upperCount, lowerCount), aa, b)
+x = solve_banded((upperCount, lowerCount), aa, rhs)
 
 # Der Polygonzug für die Visualisierung liegt auf wireX, wireY
 # Wir fügen die Randpunkte mit Hilfe von ya und yb hinzu.
@@ -56,5 +55,5 @@ plt.plot(0.0, wireY[0], 'ks')
 plt.plot(length, wireY[n+1], 'ks')
 plt.title('Lösung der Kabelgleichung')
 
-plt.savefig('images/wiren50a5b3.png')
+plt.savefig('images/wiren50a5b4.png')
 plt.show()

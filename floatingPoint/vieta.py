@@ -85,16 +85,16 @@ def main():
     x = numberOne(p, q)
     print('Test der Funktion numberOne')
     for i in range(3):
-        print('Das korrekte Ergebnis für p = ',
+        print('Das korrekte Ergebnis mit p = ',
               p[i], ' und q = ', q[i], ' ist ', correct[i])
-        print('Lösung mit Hilfe der Funktion: x = ', x[i])
+        print('Das Ergebnis der Berechnung: x = ', x[i])
 
     x = numberTwo(p, q)
     print('\nTest der Funktion numberTwo')
     for i in range(3):
         print('Das korrekte Ergebnis für p = ',
               p[i], ' und q = ', q[i], ' ist ', correct[i])
-        print('Lösung mit Hilfe der Funktion: x = ', x[i])
+        print('Das Ergebnis der Berechnung: x = ', x[i])
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Example for a linear regression using qr-decomposition
+Lineare Ausgleichsrechnung mit der QR-Zerlegung
 
-we compute a = qr, q^T b and solve r x = q^T b
+Wir berechnen a = qr, q^T b und lösen r x = q^T b.
 """
 import numpy as np
 from scipy import linalg
@@ -67,7 +67,7 @@ fig = plt.figure(figsize=(16.0, 9.0))
 plt.title('Model')
 plt.xlabel('x')
 plt.ylabel('y')
-plt.plot(data[:, 0], data[:, 1], 'ob', markersize=10, 
+plt.plot(data[:, 0], data[:, 1], 'ob', markersize=10,
          label='data points')
 plt.plot(xvals, yvals, '-g', label='fitting function')
 plt.legend()

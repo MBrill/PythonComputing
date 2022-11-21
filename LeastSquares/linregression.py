@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Example for linear regression
+Lineare Ausgleichsrechnung im Modul stats
 
-Data are taken from dataset wassergehalt.csv
+Daten stammen aus der csv-Datei wassergehalt.csv
 """
 import numpy as np
 from scipy import stats
@@ -13,15 +13,15 @@ data = np.genfromtxt('wassergehalt.csv',
 
 r = stats.linregress(data)
 
-print('Correct values')
-print('Slope of line is 0.236')
-print('Intercept of line is 2.665')
+print('Korrekte Werte')
+print('Die Steigung der Gerade ist 0.236')
+print('Der Achsenabschnitt ist 2.665')
 print(r.slope, r.intercept)
 
-print('Computed parameters')
-print('Coefficient of determination is ', r.rvalue)
-print('p-value is ', r.pvalue)
-print('least squares error is ', r.stderr)
+print('Berechnungsergebnisse')
+print('Bestimmtheits1mass: ', r.rvalue)
+print('p-Wert: ', r.pvalue)
+print('Least-Squares Fehler: ', r.stderr)
 
 fig = plt.figure(figsize=(16.0, 9.0))
 plt.title('Linear Regression')

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Example for linear regression using qr-decomposition
+Lineare Ausgleichsrechnung mit der QR-Zerlegung
 
-we compute a = qr, q^T b and solve r x = q^T b
+Wir berechnen a = qr, q^T b und lösen r x = q^T b.
 """
 import numpy as np
 from scipy import linalg
 
+# Daten einlesen
 data = np.genfromtxt('wassergehalt.csv',
                      delimiter=';', skip_header=True)
 

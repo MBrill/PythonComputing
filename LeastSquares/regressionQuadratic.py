@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Example for quadratic regression using qr-decomposition
-
-we compute a = qr, q^T b and solve r x = q^T b
+Lineare Ausgleichsrechnung auf Basis der QR-Zerlegung
+mit einem quadratischen Polynom
 """
 import numpy as np
 from scipy import linalg

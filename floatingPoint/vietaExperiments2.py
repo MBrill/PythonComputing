@@ -6,15 +6,18 @@ import numpy as np
 import vieta
 
 # Werte für p und q produzieren
+# Dieses mal verwenden wir ein q, das p^2 immer näher kommt
 n = 20
-p = np.full(shape=(n, ), fill_value=999.0, dtype=np.float64)
+pvalue = 999.0
+p = np.full(shape=(n, ), fill_value=pvalue, dtype=np.float64)
+pp = np.full(shape=(n, ), fill_value=pvalue*pvalue, dtype=np.float64)
 k = np.arange(1, n+1, 1)
 qq = np.full(shape=(n,), fill_value=0.1, dtype=np.float64)
-q = np.power(qq, k)
+q = pp - np.power(qq, k)
 
 print('Test der Funktionen numberOne und numberTwo')
 print('Wir verwenden p=999.0 und')
-print('die Werte q = 0.1, 0.01, ..., 10^(-20)!')
+print('die Werte q = 999^2 - 0.1, 999^2 - 0.01, ..., 999^2 -  10^(-20)!')
 
 # Wir führen die Berechnung durch und speichern die Ergebnisse
 # für eine übersichtliche Ausgabe
