@@ -9,7 +9,6 @@ alle anderen Randwerte sind 0.
 """
 import numpy as np
 from scipy.linalg import solve_banded
-import scipy.sparse.linalg as spla
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
@@ -24,7 +23,7 @@ f = -0.5
 
 # Wie fein ist die Diskretisierung?
 # Wir verwenden eine n^2 x n^2 Matrix
-n = 5
+n = 100
 h = length/(n+1)
 n2 = n*n
 
@@ -56,13 +55,7 @@ x = solve_banded((upperCount, lowerCount), aa, rhs)
 # Jetzt x wieder zu einem zweidimensionalen Feld machen
 # und die Werte mit Hilfe einer Heatmap darstellen
 x2d = np.reshape(x, (n, n), order='F')
-print(x2d)
 
-A = (upperCount, lowerCount), aa
-x, exitCode = spla.gmres(A, rhs)
-if exitCode == 0:
-    x2d = np.reshape(x, (n, n), order='F')
-    print(x2d)
 
 boundary = np.full(shape=(n, 1), fill_value=C)
 cooler = np.zeros(shape=(n, n+1))
