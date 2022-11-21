@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Example for the cg-algorithm in SciPy
+Beispiel für den CG-Algorithmus in SciPy
 """
 import numpy as np
 import scipy.sparse.linalg as spla
@@ -24,6 +24,7 @@ A = np.array([[5, 7, 3],
               ])
 b = np.array([0, 0, 1])
 x, exitCode = spla.gmres(A, b)
+
 # Solution from Schwarz
 xexact = np.array([-19.0, 11.0, 6.0])
 
