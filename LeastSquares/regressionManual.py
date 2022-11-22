@@ -36,8 +36,9 @@ print(rL)
 print(Wg)
 
 # Koordinaten für die Ausgleichsgerade
+xmin = np.min(data[:, 0])
 xmax = np.max(data[:, 0])
-xvals = np.linspace(0.0, xmax, num=2)
+xvals = np.linspace(xmin, xmax, num=2)
 yvals = m*xvals + b
 
 fig = plt.figure(figsize=(16.0, 9.0))

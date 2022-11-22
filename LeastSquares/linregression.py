@@ -11,27 +11,28 @@ import matplotlib.pyplot as plt
 data = np.genfromtxt('wassergehalt.csv',
                      delimiter=';', skip_header=True)
 
-r = stats.linregress(data)
+result = stats.linregress(data)
+print(result.slope, result.intercept)
 
-print('Korrekte Werte')
-print('Die Steigung der Gerade ist 0.236')
-print('Der Achsenabschnitt ist 2.665')
-print(r.slope, r.intercept)
+print('Weitere Ausgaben der Funktion stats.linregression')
+print('Bestimmtheits1mass: ', result.rvalue)
+print('p-Wert: ', result.pvalue)
+print('Least-Squares Fehler: ', result.stderr)
 
-print('Berechnungsergebnisse')
-print('Bestimmtheits1mass: ', r.rvalue)
-print('p-Wert: ', r.pvalue)
-print('Least-Squares Fehler: ', r.stderr)
+# Koordinaten für die Ausgleichsgerade
+xmin = np.min(data[:, 0])
+xmax = np.max(data[:, 0])
+xvals = np.linspace(xmin, xmax, num=2)
+yvals = result.slope*xvals + result.intercept
 
 fig = plt.figure(figsize=(16.0, 9.0))
-plt.title('Linear Regression')
+plt.title('Lineare Regression mit scipy.stats',
+          y=1.05, fontsize=24)
+plt.grid()
 plt.xlabel('x')
 plt.ylabel('y')
-plt.plot(data[:, 0], data[:, 1], 'oc', label='data points')
-plt.plot(data[:, 0], r.slope*data[:, 0] + r.intercept, '-g',
-         label='data points')
-plt.legend()
+plt.plot(data[:, 0], data[:, 1], 'og')
+plt.plot(xvals, yvals, '-r')
 
 plt.show()
-
-fig.savefig('images/wassergehalt.png', dpi=300)
+fig.savefig('images/wassergehaltscp.png', dpi=300)
