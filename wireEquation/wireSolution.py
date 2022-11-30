@@ -8,7 +8,7 @@ from scipy.linalg import solve_banded
 import matplotlib.pyplot as plt
 
 # Wie hoch ist das Kabel an den beiden Enden in y?
-ya = 5.0
+ya = 25.0
 yb = 4.0
 # Wo ist der rechte Punkt des Kabels auf der x-Achse?
 length = 3.0
@@ -16,7 +16,7 @@ length = 3.0
 f = 30.0
 
 # Wie fein ist die Diskretisierung?
-n = 51
+n = 21
 h = length/(n-1)
 
 # Tridiagonalmatrix als SciPy Bandmatrix
