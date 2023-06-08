@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-SciPy example for initial value problems
+SciPy Beispiel für ein Anfangswertproblem
 """
 import numpy as np
 from scipy import integrate
@@ -14,9 +14,9 @@ def f(t, y):
     Parameters
     ----------
     t : float
-        Independent variable.
+        Unabhängige Variable
     y : float
-        solution we look for.
+        Funktionswerte der gesuchten Lösung.
 
     Returns
     -------
@@ -29,9 +29,11 @@ a = 0.0
 b = 10.0
 n = 50
 eval = np.linspace(a, b, n)
-# Array mit Startwerten
+
+# Array mit 2 Startwerten (wir berechnen zwei Lösungen!)
 ivs = np.array([2, 4])
-sol = integrate.solve_ivp(fun=f, t_span=[a, b], y0=ivs,
+sol = integrate.solve_ivp(fun=f, t_span=[a, b],
+                          y0=ivs,
                           t_eval=eval)
 if sol.success:
     y1 = sol.y[0, :]
@@ -44,7 +46,7 @@ plt.plot(a, ivs[0], 'go')
 plt.plot(eval, y1, 'g-')
 plt.plot(a, ivs[1], 'mo')
 plt.plot(eval, y2, 'm-')
-plt.title('Lösung mit integrate.solve_ivp (Runge-Kutta45')
+plt.title('Lösung mit integrate.solve_ivp (Runge-Kutta45 mit 2 Startwerten')
 plt.xlabel('t')
 plt.ylabel('y(t)')
 

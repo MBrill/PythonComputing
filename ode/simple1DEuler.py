@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Example for a simple one-dimensionale Euler
+Einfaches Beispiel für ein eindimensionales Euler-Verfahren
 """
 import numpy as np
+import euler1D
 import matplotlib.pyplot as plt
 
 
 def f(t, y):
     """
-    Function in the ode,
+    Funktion in der Differentialgleichung
 
     Parameters
     ----------
     t : float
-        Independent variable.
+        Variable
     y : float
-        solution we look for.
+        Funktionswerte der gesuchten Lösung
 
     Returns
     -------
@@ -27,14 +28,12 @@ def f(t, y):
 n = 9
 a = 0.0
 b = 2.0
-h = (b-a)/(n-1)
 
 t = np.linspace(a, b, num=n+1)
 y = np.zeros(shape=(n+1,))
 
-y[0] = 1.0
-for i in np.arange(n):
-    y[i+1] = y[i] + h*f(t[i], y[i])
+y0 = 1.0
+y = euler1D.euler1D(f, t, y0)
 
 fig = plt.figure()
 plt.grid(True)
