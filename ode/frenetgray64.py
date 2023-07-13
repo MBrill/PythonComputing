@@ -22,7 +22,7 @@ def k(s):
     -------
     Wert der Krümmung für den Parameterwert s.
     """
-    return (s * s * np.sin(s))
+    return (s + np.sin(s))
 
 
 def func(s, y):
@@ -43,18 +43,27 @@ def func(s, y):
     return [np.cos(y[2]), np.sin(y[2]), k(s)]
 
 
-a = -10.0
-b = 10.0
+a = -18.0
+b = 18.0
 n = 500
-eval = np.linspace(a, b, n)
+points = np.linspace(a, b, n)
 
-# Array mit 2 Startwerten
-r = 1.0
-ivs = np.array([0.0, 0.0, k(a)])
+# Krümmung grafisch darstellen
+kappaValues = k(points)
+
+fig = plt.figure()
+plt.grid(True)
+
+plt.plot(points, kappaValues, 'g-')
+plt.title('Vorgegebene Krümmung')
+plt.ylabel('kappa')
+
+# ODE lösen und visualisieren
+ivs = np.array([0, 0, k(a)])
 sol = integrate.solve_ivp(fun=func,
                           t_span=[a, b],
                           y0=ivs,
-                          t_eval=eval)
+                          t_eval=points)
 
 if sol.success:
     y1 = sol.y[0, :]
@@ -62,13 +71,13 @@ if sol.success:
     y3 = sol.y[2, :]
 
 fig, axs = plt.subplots(1, 1)
-# axs.axis('equal')
+axs.axis('equal')
 plt.grid(True)
 
 plt.plot(y1, y2, 'g-')
-plt.title('Lösung mit integrate.solve_ivp (Runge-Kutta45 ')
-plt.xlabel('s')
-plt.ylabel('K(s)')
+plt.title('Kurve mit der vorgegebenen Krümmung')
+plt.xlabel('x')
+plt.ylabel('y)')
 
 # Plot abspeichern
 #plt.savefig('images/ivp1.png', dpi=150)

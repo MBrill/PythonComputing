@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-SciPy Beispiel für ein Anfangswertproblem für Parameterkurven
+SciPy Beispiel für ein Anfangswertproblem für Parameterkurven.
+Hier reproduzieren wir die Abbildung 6.4. auf Seite 106
+aus Gray.
 """
 import numpy as np
 from scipy import integrate
 import matplotlib.pyplot as plt
 
-r = 2.0
-
 
 def k(s):
     """
-    Krümmung der gesuchten Kurve
+    Krümmung der gesuchten Kurve: s + sin(s)
 
     Parameters
     ----------
@@ -22,7 +22,7 @@ def k(s):
     -------
     Wert der Krümmung für den Parameterwert s.
     """
-    return 1.0/r
+    return (s * s * np.sin(s))
 
 
 def func(s, y):
@@ -43,14 +43,13 @@ def func(s, y):
     return [np.cos(y[2]), np.sin(y[2]), k(s)]
 
 
-a = 0.0
-b = 4.0*np.pi
-n = 100
+a = -10.0
+b = 10.0
+n = 500
 points = np.linspace(a, b, n)
 
 # Krümmung grafisch darstellen
-kVec = np.vectorize(k)
-kappaValues = kVec(points)
+kappaValues = k(points)
 
 fig = plt.figure()
 plt.grid(True)
@@ -76,7 +75,7 @@ axs.axis('equal')
 plt.grid(True)
 
 plt.plot(y1, y2, 'g-')
-plt.title('Kurve mit konstanter Krümmung')
+plt.title('Kurve mit der vorgegebenen Krümmung')
 plt.xlabel('x')
 plt.ylabel('y)')
 
