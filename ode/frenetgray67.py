@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 SciPy Beispiel für ein Anfangswertproblem für Parameterkurven.
-Hier reproduzieren wir die Abbildung 6.4. auf Seite 106
-aus Gray.
+in Anhehnung an Gray.
 """
 import numpy as np
 from scipy import integrate
