@@ -77,6 +77,8 @@ def main():
     None.
     """
 
+    print('Rekursive Berechnungen für ein Integral')
+    print(' ')
     print('Berechnung mit der Funktion forward')
     n = 4
     lower, upper = estimates(n)
